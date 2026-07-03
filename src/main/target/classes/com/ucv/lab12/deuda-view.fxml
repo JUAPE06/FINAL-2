@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.ucv.lab12.controller.DeudaController"
+      spacing="10"
+      style="-fx-padding:15; -fx-background-color:#F5F5F5;">
+
+    <Label text="Gestión de Deudas Administrativas - UGEL Ilo"
+           style="-fx-font-size:22; -fx-font-weight:bold; -fx-text-fill:#2E7D32;">
+        <font><Font size="22.0"/></font>
+    </Label>
+    <Separator/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT"
+          style="-fx-background-color:#E8F5E9; -fx-padding:10; -fx-background-radius:6;">
+        <Label text="Docente:" style="-fx-font-weight:bold;"/>
+        <TextField fx:id="txtDocente" promptText="Nombre, Apellido o DNI..." prefWidth="200"/>
+        <Label text="Concepto:" style="-fx-font-weight:bold;"/>
+        <TextField fx:id="txtConcepto" promptText="Buscar concepto..." prefWidth="200"/>
+        <Label text="Estado:" style="-fx-font-weight:bold;"/>
+        <ComboBox fx:id="cboEstadoFiltro" prefWidth="150" promptText="Todos"/>
+        <Button text="Filtrar" onAction="#onBuscar"
+                style="-fx-background-color:#2E7D32;-fx-text-fill:white;-fx-cursor:hand;-fx-font-weight:bold;"
+                prefWidth="100"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="+ Nueva Deuda" onAction="#onCrear"
+                style="-fx-background-color:#388E3C;-fx-text-fill:white;-fx-cursor:hand;-fx-font-weight:bold;"
+                prefWidth="170"/>
+        <Button text="Eliminar Seleccionados" onAction="#onEliminarSeleccionados"
+                style="-fx-background-color:#C62828;-fx-text-fill:white;-fx-cursor:hand;-fx-font-weight:bold;"
+                prefWidth="170"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblTotal" text="Total: 0 registro(s)"
+               style="-fx-font-style:italic; -fx-text-fill:#555;"/>
+    </HBox>
+
+    <TableView fx:id="tableView" VBox.vgrow="ALWAYS" editable="true"
+               style="-fx-background-color:white; -fx-border-color:#CFD8DC; -fx-border-radius:4;">
+        <columns>
+            <TableColumn fx:id="colSeleccion" text="" prefWidth="42" maxWidth="42" resizable="false"/>
+            <TableColumn fx:id="colId" text="ID" prefWidth="55" style="-fx-alignment:CENTER;"/>
+            <TableColumn fx:id="colDocente" text="Docente" prefWidth="250"/>
+            <TableColumn fx:id="colConcepto" text="Concepto" prefWidth="200"/>
+            <TableColumn fx:id="colMonto" text="Monto (S/)" prefWidth="100" style="-fx-alignment:CENTER-RIGHT;"/>
+            <TableColumn fx:id="colFecha" text="Fecha Registro" prefWidth="120" style="-fx-alignment:CENTER;"/>
+            <TableColumn fx:id="colEstado" text="Estado" prefWidth="120" style="-fx-alignment:CENTER;"/>
+            <TableColumn fx:id="colAcciones" text="Acciones" prefWidth="155" style="-fx-alignment:CENTER;"/>
+        </columns>
+        <placeholder>
+            <Label text="No hay deudas registradas." style="-fx-text-fill:#888;"/>
+        </placeholder>
+    </TableView>
+</VBox>
